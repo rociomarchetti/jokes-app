@@ -1,20 +1,26 @@
-https://www.sohamkamani.com/typescript/rest-http-api-call/#usage-and-examples
+//https://www.sohamkamani.com/typescript/rest-http-api-call/#usage-and-examples
 
-const link = 'https://icanhazdadjoke.com/'
+const API_URL = "https://icanhazdadjoke.com/";
 
-interface Joke {
-    id: string,
-    joke: string,
-    status: number
+const request = {
+    headers: {
+      Accept: "application/json",
+    },
+  };
+
+async function getJoke(): Promise<void> { 
+
+    const newJoke = await fetch(API_URL, request);
+    let response = await newJoke.json();
+    let joke: string = response.joke
+    console.log(joke)
+    
+    const input = document.getElementById("joke");
+    const printJoke: HTMLElement = input!
+    printJoke.innerHTML = joke;
 }
 
-async function getJokes(): Promise<Joke> {
-    const response = await fetch(link);
-    const data = await response.json();   
-    if (response.status === 200) {
-        return fetch ('/')
-    }
-    else {
-        console.error("HTTP-Error, càrrega temps: " + response.status);
-    }
-}
+     
+
+
+
