@@ -24,5 +24,8 @@ function getJoke() {
         const input = document.getElementById("joke");
         const printJoke = input;
         printJoke.innerHTML = joke;
+        const title = document.getElementById("title");
+        const changeTitle = title;
+        changeTitle.innerHTML = 'Best dad joke ever:';
     });
 }

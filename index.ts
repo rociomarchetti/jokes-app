@@ -18,6 +18,10 @@ async function getJoke(): Promise<void> {
     const input = document.getElementById("joke");
     const printJoke: HTMLElement = input!
     printJoke.innerHTML = joke;
+
+    const title = document.getElementById("title")
+    const changeTitle: HTMLElement = title!
+    changeTitle.innerHTML = 'Best dad joke ever:'
 }
 
      
