@@ -1,9 +1,3 @@
-/* const world = 'world';
-
-export function hello(who: string = world): string {
-  return `Hello ${who}! `;
-} */
-
 https://www.sohamkamani.com/typescript/rest-http-api-call/#usage-and-examples
 
 const link = 'https://icanhazdadjoke.com/'
