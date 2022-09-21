@@ -1,4 +1,6 @@
 const API_URL = "https://icanhazdadjoke.com/";
+const WEATHER_URL =
+  "https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=07b52cb67cf89c2c99b8e5227164aab1&units=metric&lang=ca";
 
 const request = {
   headers: {
@@ -50,3 +52,27 @@ function saveScore(score: number) {
 }
 
 let userPuntuation: any = "";
+
+//---------------------------------------WEATHER
+
+async function getWeather() {
+  let weather = await fetch(WEATHER_URL);
+  let data = await weather.json();
+
+  let todaysWeather = {
+    location: "",
+    temperature: "",
+  };
+
+  todaysWeather.location = data.name;
+  todaysWeather.temperature = data.main.temp;
+
+  const location = document.getElementById("location") as HTMLElement;
+  location.innerText = 'Ciudad: ' + todaysWeather.location + '. ';
+  const temperature = document.getElementById("temperature") as HTMLElement;
+  temperature.innerText = ' Temperatura actual: ' + todaysWeather.temperature + 'º';
+
+  console.log(data);
+}
+
+document.addEventListener("DOMContentLoaded", getWeather);

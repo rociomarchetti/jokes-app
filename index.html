@@ -11,21 +11,37 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous">
-    </head> 
+    </head>
     <body>
-        <div class="card d-flex text-center">
-            <div class="card-body">
-                <h2 class="card-title" id="title">Ready for the best dad jokes
-                    ever?</h2>
-                <p class="card-text" id="joke"></p>
-                <div class="buttonsList d-flex">
-                    <button type="button" class="btn btn-outline-warning" onclick="saveScore(1)">⭐​</button>
-                    <button type="button" class="btn btn-outline-warning" onclick="saveScore(2)">⭐​⭐​</button>
-                    <button type="button" class="btn btn-outline-warning" onclick="saveScore(3)">⭐​⭐​⭐​</button>
+        <header>
+            <div id="meteoInfo" class="container d-flex">
+                <div class="row">
+                    <span id="location"></span>
+                    <span id="image"></span>
+                    <span id="temperature"></span>
                 </div>
-                <button type="button" class="btn btn-primary"
-                    onclick="getJoke()">Next joke!</button>
             </div>
-        </div>
+        </header>
+        <main>
+            <div class="card d-flex text-center">
+                <div class="card-body">
+                    <h2 class="card-title" id="title">Ready for the best dad
+                        jokes
+                        ever?</h2>
+                    <p class="card-text" id="joke"></p>
+                    <div class="buttonsList d-flex">
+                        <button type="button" class="btn btn-outline-warning"
+                            onclick="saveScore(1)">⭐​</button>
+                        <button type="button" class="btn btn-outline-warning"
+                            onclick="saveScore(2)">⭐​⭐​</button>
+                        <button type="button" class="btn btn-outline-warning"
+                            onclick="saveScore(3)">⭐​⭐​⭐​</button>
+                    </div>
+                    <button type="button" class="btn btn-primary"
+                        onclick="getJoke()">Next joke!</button>
+                </div>
+            </div>
+        </main>
+
     </body>
 </html>
