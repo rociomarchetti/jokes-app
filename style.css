@@ -1,0 +1,32 @@
+body {
+    background-image: url("/images/group-people-watching-funny-video-laughing-cartoon.jpg");
+    background-size: 100%
+}
+
+.card {
+    padding: 3em;
+    margin-top: 3%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.card-title {
+    color: #DF5B10
+}
+
+.card-text {
+    font-weight: bolder;
+    font-size: xx-large;
+    color: #3681B3;
+    margin-top: 5%;
+}
+
+.btn {
+    margin-top: 5%;
+}
+
+.buttonsList {
+    margin-left: 25%;
+    margin-right: 25%;
+    justify-content: space-between
+}

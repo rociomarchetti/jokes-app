@@ -1,5 +1,4 @@
 "use strict";
-//https://www.sohamkamani.com/typescript/rest-http-api-call/#usage-and-examples
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -15,17 +14,41 @@ const request = {
         Accept: "application/json",
     },
 };
+let reportJokes = [];
+let score;
 function getJoke() {
     return __awaiter(this, void 0, void 0, function* () {
         const newJoke = yield fetch(API_URL, request);
         let response = yield newJoke.json();
         let joke = response.joke;
-        console.log(joke);
         const input = document.getElementById("joke");
         const printJoke = input;
         printJoke.innerHTML = joke;
         const title = document.getElementById("title");
         const changeTitle = title;
-        changeTitle.innerHTML = 'Best dad joke ever:';
+        changeTitle.innerHTML = "How many stars do you give to this one?:";
+        const reportData = {
+            joke: "",
+            score: score,
+            date: "",
+        };
+        reportData.joke = joke;
+        const d = new Date();
+        let date = d.toISOString();
+        reportData.date = date;
+        if (userPuntuation === "") {
+            reportData.score = "not puntuated";
+        }
+        else {
+            reportData.score = userPuntuation;
+        }
+        reportJokes.push(reportData);
+        console.log(reportJokes);
     });
 }
+function saveScore(score) {
+    console.log(score);
+    userPuntuation = score;
+    return userPuntuation;
+}
+let userPuntuation = "";
