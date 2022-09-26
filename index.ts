@@ -14,6 +14,16 @@ let score: 1 | 2 | 3 | string;
 let apiCall: number = 2;
 
 async function getJoke() {
+  const title = document.getElementById("title") as HTMLElement;
+  const message = document.getElementById("response") as HTMLElement;
+  const changeResponse: HTMLElement = message!;
+  const input = document.getElementById("joke");
+  const printJoke: HTMLElement = input!;
+
+  const header = document.getElementsByTagName("header");
+
+  title.style.display = "none";
+
   const reportData = {
     joke: "",
     score: score,
@@ -25,33 +35,19 @@ async function getJoke() {
     const newDadJoke = await fetch(DAD_URL, request);
     let response = await newDadJoke.json();
     let dadJoke: string = response.joke;
-
-    const input = document.getElementById("joke");
-    const printJoke: HTMLElement = input!;
     printJoke.innerHTML = dadJoke;
-
-    const title = document.getElementById("title");
-    const changeTitle: HTMLElement = title!;
-    changeTitle.innerHTML = "How many stars do you give to this Dad Joke?";
-
+    changeResponse.innerHTML =
+      "Don't like dad jokes? Click on the arrow  👇 for a Chuck Norris fact";
     reportData.joke = dadJoke;
-
     apiCall++;
   } else {
     console.log("ChuckJoke");
     const newChuckJoke = await fetch(CHUCK_URL, request);
     let response = await newChuckJoke.json();
     let chuckJoke: string = response.value;
-
-    const input = document.getElementById("joke");
-    const printJoke: HTMLElement = input!;
     printJoke.innerHTML = chuckJoke;
-
-    const title = document.getElementById("title");
-    const changeTitle: HTMLElement = title!;
-    changeTitle.innerHTML =
-      "How many stars do you give to this Chuck Norris joke?";
-
+    changeResponse.innerHTML =
+      "Don't like Chuck Norris? Click on the arrow  👇 for a Dad Joke";
     reportData.joke = chuckJoke;
 
     apiCall--;
@@ -83,25 +79,44 @@ let userPuntuation: any = "";
 
 //---------------------------------------WEATHER
 
-async function getWeather(): Promise<void> {
+let todaysWeather = {
+  location: "",
+  temperature: "",
+  icon: "",
+  urlIcon: "",
+};
+
+async function getWeather() {
   let weather = await fetch(WEATHER_URL);
   let data = await weather.json();
 
-  let todaysWeather = {
-    location: "",
-    temperature: "",
-  };
-
   todaysWeather.location = data.name;
   todaysWeather.temperature = data.main.temp;
+  todaysWeather.icon = data.weather[0].icon;
+  todaysWeather.urlIcon =
+    "http://openweathermap.org/img/wn/" + todaysWeather.icon + "@2x.png";
 
-  const location = document.getElementById("location") as HTMLElement;
-  location.innerText = "Ciudad: " + todaysWeather.location + ". ";
+  showIcon(todaysWeather);
+
+  /*  const location = document.getElementById("location") as HTMLElement;
+  location.innerText = "Ciudad: " + todaysWeather.location + ". "; */
   const temperature = document.getElementById("temperature") as HTMLElement;
-  temperature.innerText =
-    " Temperatura actual: " + todaysWeather.temperature + "º";
+  temperature.innerText = parseInt(todaysWeather.temperature) + "ºC";
 
   console.log(data);
 }
 
 document.addEventListener("DOMContentLoaded", getWeather);
+
+async function showIcon(todaysWeather: any) {
+  const weatherInfo = document.getElementById("meteoInfo") as HTMLElement;
+  let response = await fetch(todaysWeather.urlIcon);
+  let imageBlob = await response.blob();
+  let imageUrl = URL.createObjectURL(imageBlob);
+
+  let weatherIcon = document.createElement("img");
+  weatherIcon.src = imageUrl;
+  weatherIcon.style.width = "5em";
+  weatherIcon.style.marginLeft = "10px";
+  weatherInfo.append(weatherIcon);
+}
