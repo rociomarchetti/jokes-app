@@ -6,12 +6,14 @@ const CHUCK_URL = "https://api.chucknorris.io/jokes/random";
 const request = {
   headers: {
     Accept: "application/json",
-  },
+  }, 
 };
 
 let reportJokes: { joke: string; score: any; date: string }[] = [];
 let score: 1 | 2 | 3 | string;
 let apiCall: number = 2;
+
+const background = document.getElementsByClassName("bg");
 
 async function getJoke() {
   const title = document.getElementById("title") as HTMLElement;
@@ -21,8 +23,8 @@ async function getJoke() {
   const printJoke: HTMLElement = input!;
 
   const header = document.getElementsByTagName("header");
-
   title.style.display = "none";
+  background.style
 
   const reportData = {
     joke: "",
@@ -37,7 +39,7 @@ async function getJoke() {
     let dadJoke: string = response.joke;
     printJoke.innerHTML = dadJoke;
     changeResponse.innerHTML =
-      "Don't like dad jokes? Click on the arrow  👇 for a Chuck Norris fact";
+      "Don't like dad jokes? Click on the arrow  ​👉 for a Chuck Norris fact";
     reportData.joke = dadJoke;
     apiCall++;
   } else {
@@ -47,7 +49,7 @@ async function getJoke() {
     let chuckJoke: string = response.value;
     printJoke.innerHTML = chuckJoke;
     changeResponse.innerHTML =
-      "Don't like Chuck Norris? Click on the arrow  👇 for a Dad Joke";
+      "Don't like Chuck Norris? Click on the arrow  ​👉 for a Dad Joke";
     reportData.joke = chuckJoke;
 
     apiCall--;
@@ -107,7 +109,11 @@ async function getWeather() {
 }
 
 document.addEventListener("DOMContentLoaded", getWeather);
-
+document.addEventListener("DOMContentLoaded", () => {
+  let rateBtns = document.getElementById("buttonsList") as HTMLElement;
+  rateBtns.style.display = "none";
+})
+ 
 async function showIcon(todaysWeather: any) {
   const weatherInfo = document.getElementById("meteoInfo") as HTMLElement;
   let response = await fetch(todaysWeather.urlIcon);
