@@ -6,7 +6,7 @@ const CHUCK_URL = "https://api.chucknorris.io/jokes/random";
 const request = {
   headers: {
     Accept: "application/json",
-  }, 
+  },
 };
 
 let reportJokes: { joke: string; score: any; date: string }[] = [];
@@ -21,10 +21,10 @@ async function getJoke() {
   const changeResponse: HTMLElement = message!;
   const input = document.getElementById("joke");
   const printJoke: HTMLElement = input!;
+  const bg = document.getElementById("bg") as HTMLElement;
+  const shapes = document.getElementById("svg1") as HTMLDivElement;
 
-  const header = document.getElementsByTagName("header");
   title.style.display = "none";
-  background.style
 
   const reportData = {
     joke: "",
@@ -41,6 +41,11 @@ async function getJoke() {
     changeResponse.innerHTML =
       "Don't like dad jokes? Click on the arrow  ​👉 for a Chuck Norris fact";
     reportData.joke = dadJoke;
+    bg.style.backgroundColor = "#08BDBA";
+    const altShapes = document.getElementById("svg2") as HTMLDivElement;
+    altShapes.style.display = "none";
+    const shapes = document.getElementById("svg1") as HTMLDivElement;
+    shapes.style.display = "block"
     apiCall++;
   } else {
     console.log("ChuckJoke");
@@ -51,7 +56,11 @@ async function getJoke() {
     changeResponse.innerHTML =
       "Don't like Chuck Norris? Click on the arrow  ​👉 for a Dad Joke";
     reportData.joke = chuckJoke;
-
+    bg.style.backgroundColor = "red";
+    const altShapes = document.getElementById("svg2") as HTMLDivElement;
+    altShapes.style.display = "block";
+    const shapes = document.getElementById("svg1") as HTMLDivElement;
+    shapes.style.display = "none"
     apiCall--;
   }
 
@@ -110,10 +119,10 @@ async function getWeather() {
 
 document.addEventListener("DOMContentLoaded", getWeather);
 document.addEventListener("DOMContentLoaded", () => {
-  let rateBtns = document.getElementById("buttonsList") as HTMLElement;
-  rateBtns.style.display = "none";
-})
- 
+  const altShapes = document.getElementById("svg2") as HTMLDivElement;
+  altShapes.style.display = "none";
+});
+
 async function showIcon(todaysWeather: any) {
   const weatherInfo = document.getElementById("meteoInfo") as HTMLElement;
   let response = await fetch(todaysWeather.urlIcon);

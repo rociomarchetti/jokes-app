@@ -19,6 +19,7 @@ const request = {
 let reportJokes = [];
 let score;
 let apiCall = 2;
+const background = document.getElementsByClassName("bg");
 function getJoke() {
     return __awaiter(this, void 0, void 0, function* () {
         const title = document.getElementById("title");
@@ -26,6 +27,8 @@ function getJoke() {
         const changeResponse = message;
         const input = document.getElementById("joke");
         const printJoke = input;
+        const bg = document.getElementById("bg");
+        const shapes = document.getElementById("svg1");
         title.style.display = "none";
         const reportData = {
             joke: "",
@@ -39,8 +42,13 @@ function getJoke() {
             let dadJoke = response.joke;
             printJoke.innerHTML = dadJoke;
             changeResponse.innerHTML =
-                "Don't like dad jokes? Click on the arrow  👇 for a Chuck Norris fact";
+                "Don't like dad jokes? Click on the arrow  ​👉 for a Chuck Norris fact";
             reportData.joke = dadJoke;
+            bg.style.backgroundColor = "#08BDBA";
+            const altShapes = document.getElementById("svg2");
+            altShapes.style.display = "none";
+            const shapes = document.getElementById("svg1");
+            shapes.style.display = "block";
             apiCall++;
         }
         else {
@@ -50,8 +58,13 @@ function getJoke() {
             let chuckJoke = response.value;
             printJoke.innerHTML = chuckJoke;
             changeResponse.innerHTML =
-                "Don't like Chuck Norris? Click on the arrow  👇 for a Dad Joke";
+                "Don't like Chuck Norris? Click on the arrow  ​👉 for a Dad Joke";
             reportData.joke = chuckJoke;
+            bg.style.backgroundColor = "red";
+            const altShapes = document.getElementById("svg2");
+            altShapes.style.display = "block";
+            const shapes = document.getElementById("svg1");
+            shapes.style.display = "none";
             apiCall--;
         }
         const d = new Date();
@@ -100,6 +113,10 @@ function getWeather() {
     });
 }
 document.addEventListener("DOMContentLoaded", getWeather);
+document.addEventListener("DOMContentLoaded", () => {
+    const altShapes = document.getElementById("svg2");
+    altShapes.style.display = "none";
+});
 function showIcon(todaysWeather) {
     return __awaiter(this, void 0, void 0, function* () {
         const weatherInfo = document.getElementById("meteoInfo");
