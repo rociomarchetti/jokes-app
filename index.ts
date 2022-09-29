@@ -10,57 +10,66 @@ const request = {
 };
 
 let reportJokes: { joke: string; score: any; date: string }[] = [];
-let score: 1 | 2 | 3 | string;
+let userPuntuation: any = "not rated yet";
 let apiCall: number = 2;
 
 const background = document.getElementsByClassName("bg");
 
 async function getJoke() {
   const title = document.getElementById("title") as HTMLElement;
+  title.style.display = "none";
+
   const message = document.getElementById("response") as HTMLElement;
   const changeResponse: HTMLElement = message!;
+
   const input = document.getElementById("joke");
   const printJoke: HTMLElement = input!;
-  const bg = document.getElementById("bg") as HTMLElement;
-  const shapes = document.getElementById("svg1") as HTMLDivElement;
 
-  title.style.display = "none";
+  const bg = document.getElementById("bg") as HTMLElement;
+
+  const scoreBtns = document.getElementById("buttonsList") as HTMLElement;
+  scoreBtns.style.display = "block";
+
+  const arrowBtn = document.getElementById("jokeBtn") as HTMLElement;
+  arrowBtn.style.display = "none";
 
   const reportData = {
     joke: "",
-    score: score,
+    score: "not rated yet",
     date: "",
   };
 
   if (apiCall % 2 === 0) {
-    console.log("dadJoke");
+    
     const newDadJoke = await fetch(DAD_URL, request);
     let response = await newDadJoke.json();
     let dadJoke: string = response.joke;
-    printJoke.innerHTML = dadJoke;
-    changeResponse.innerHTML =
-      "Don't like dad jokes? Click on the arrow  ​👉 for a Chuck Norris fact";
     reportData.joke = dadJoke;
+
+    printJoke.innerHTML = dadJoke;
+    changeResponse.innerHTML = "Coming up: a fun Chuck Norris fact";
     bg.style.backgroundColor = "#08BDBA";
     const altShapes = document.getElementById("svg2") as HTMLDivElement;
     altShapes.style.display = "none";
     const shapes = document.getElementById("svg1") as HTMLDivElement;
-    shapes.style.display = "block"
+    shapes.style.display = "block";
+
     apiCall++;
   } else {
-    console.log("ChuckJoke");
+    
     const newChuckJoke = await fetch(CHUCK_URL, request);
     let response = await newChuckJoke.json();
     let chuckJoke: string = response.value;
-    printJoke.innerHTML = chuckJoke;
-    changeResponse.innerHTML =
-      "Don't like Chuck Norris? Click on the arrow  ​👉 for a Dad Joke";
     reportData.joke = chuckJoke;
+
+    printJoke.innerHTML = chuckJoke;
+    changeResponse.innerHTML = "Coming up: a dad joke";
     bg.style.backgroundColor = "red";
     const altShapes = document.getElementById("svg2") as HTMLDivElement;
     altShapes.style.display = "block";
     const shapes = document.getElementById("svg1") as HTMLDivElement;
-    shapes.style.display = "none"
+    shapes.style.display = "none";
+    
     apiCall--;
   }
 
@@ -68,8 +77,8 @@ async function getJoke() {
   let date = d.toISOString();
   reportData.date = date;
 
-  if (userPuntuation === "") {
-    reportData.score = "not puntuated";
+  if (userPuntuation === "not rated yet") {
+    reportData.score = userPuntuation;
   } else {
     let lengthArr = reportJokes.length;
     let index = lengthArr - 1;
@@ -80,13 +89,10 @@ async function getJoke() {
   console.log(reportJokes);
 }
 
-function saveScore(score: number) {
-  console.log(score);
-  userPuntuation = score;
-  return userPuntuation;
+function saveScore(rate: number) {
+  userPuntuation = rate;
+  getJoke();
 }
-
-let userPuntuation: any = "";
 
 //---------------------------------------WEATHER
 
@@ -108,19 +114,18 @@ async function getWeather() {
     "http://openweathermap.org/img/wn/" + todaysWeather.icon + "@2x.png";
 
   showIcon(todaysWeather);
-
-  /*  const location = document.getElementById("location") as HTMLElement;
-  location.innerText = "Ciudad: " + todaysWeather.location + ". "; */
   const temperature = document.getElementById("temperature") as HTMLElement;
   temperature.innerText = parseInt(todaysWeather.temperature) + "ºC";
 
   console.log(data);
 }
 
-document.addEventListener("DOMContentLoaded", getWeather);
 document.addEventListener("DOMContentLoaded", () => {
+  getWeather();
   const altShapes = document.getElementById("svg2") as HTMLDivElement;
   altShapes.style.display = "none";
+  const scoreBtns = document.getElementById("buttonsList") as HTMLElement;
+  scoreBtns.style.display = "none";
 });
 
 async function showIcon(todaysWeather: any) {

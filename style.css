@@ -60,7 +60,7 @@ body {
 }
 
 #form3 {
-    height: 10rem; 
+    height: 10rem;
     margin-top: 30%;
 }
 
@@ -83,7 +83,7 @@ body {
 }
 
 #form3b {
-    height: 10rem; 
+    height: 10rem;
     margin-top: 30%;
 }
 
@@ -108,12 +108,11 @@ body {
 #thirdBtn {
     color: black;
     width: 3rem;
-    height: 2rem;
+    height: 3rem;
 }
 
 #buttonsList {
-    display: none;
-    margin-left: 25%;
+    margin-left: 40%;
     margin-right: 25%;
     margin-top: 25px;
     margin-bottom: 10px;
@@ -124,14 +123,12 @@ body {
 #responseMessage {
     display: flex;
     flex-direction: row;
-    justify-content: end;
-    align-content: flex-end;
+    justify-content: center;
     text-shadow: 0 0 3px bisque;
 }
 
 #response {
     margin-top: 8%;
-    margin-right: 5%;
 }
 
 #jokeBtn {

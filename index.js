@@ -17,33 +17,34 @@ const request = {
     },
 };
 let reportJokes = [];
-let score;
+let userPuntuation = "not rated yet";
 let apiCall = 2;
 const background = document.getElementsByClassName("bg");
 function getJoke() {
     return __awaiter(this, void 0, void 0, function* () {
         const title = document.getElementById("title");
+        title.style.display = "none";
         const message = document.getElementById("response");
         const changeResponse = message;
         const input = document.getElementById("joke");
         const printJoke = input;
         const bg = document.getElementById("bg");
-        const shapes = document.getElementById("svg1");
-        title.style.display = "none";
+        const scoreBtns = document.getElementById("buttonsList");
+        scoreBtns.style.display = "block";
+        const arrowBtn = document.getElementById("jokeBtn");
+        arrowBtn.style.display = "none";
         const reportData = {
             joke: "",
-            score: score,
+            score: "not rated yet",
             date: "",
         };
         if (apiCall % 2 === 0) {
-            console.log("dadJoke");
             const newDadJoke = yield fetch(DAD_URL, request);
             let response = yield newDadJoke.json();
             let dadJoke = response.joke;
-            printJoke.innerHTML = dadJoke;
-            changeResponse.innerHTML =
-                "Don't like dad jokes? Click on the arrow  ​👉 for a Chuck Norris fact";
             reportData.joke = dadJoke;
+            printJoke.innerHTML = dadJoke;
+            changeResponse.innerHTML = "Coming up: a fun Chuck Norris fact";
             bg.style.backgroundColor = "#08BDBA";
             const altShapes = document.getElementById("svg2");
             altShapes.style.display = "none";
@@ -52,14 +53,12 @@ function getJoke() {
             apiCall++;
         }
         else {
-            console.log("ChuckJoke");
             const newChuckJoke = yield fetch(CHUCK_URL, request);
             let response = yield newChuckJoke.json();
             let chuckJoke = response.value;
-            printJoke.innerHTML = chuckJoke;
-            changeResponse.innerHTML =
-                "Don't like Chuck Norris? Click on the arrow  ​👉 for a Dad Joke";
             reportData.joke = chuckJoke;
+            printJoke.innerHTML = chuckJoke;
+            changeResponse.innerHTML = "Coming up: a dad joke";
             bg.style.backgroundColor = "red";
             const altShapes = document.getElementById("svg2");
             altShapes.style.display = "block";
@@ -70,8 +69,8 @@ function getJoke() {
         const d = new Date();
         let date = d.toISOString();
         reportData.date = date;
-        if (userPuntuation === "") {
-            reportData.score = "not puntuated";
+        if (userPuntuation === "not rated yet") {
+            reportData.score = userPuntuation;
         }
         else {
             let lengthArr = reportJokes.length;
@@ -82,12 +81,10 @@ function getJoke() {
         console.log(reportJokes);
     });
 }
-function saveScore(score) {
-    console.log(score);
-    userPuntuation = score;
-    return userPuntuation;
+function saveScore(rate) {
+    userPuntuation = rate;
+    getJoke();
 }
-let userPuntuation = "";
 //---------------------------------------WEATHER
 let todaysWeather = {
     location: "",
@@ -105,17 +102,17 @@ function getWeather() {
         todaysWeather.urlIcon =
             "http://openweathermap.org/img/wn/" + todaysWeather.icon + "@2x.png";
         showIcon(todaysWeather);
-        /*  const location = document.getElementById("location") as HTMLElement;
-        location.innerText = "Ciudad: " + todaysWeather.location + ". "; */
         const temperature = document.getElementById("temperature");
         temperature.innerText = parseInt(todaysWeather.temperature) + "ºC";
         console.log(data);
     });
 }
-document.addEventListener("DOMContentLoaded", getWeather);
 document.addEventListener("DOMContentLoaded", () => {
+    getWeather();
     const altShapes = document.getElementById("svg2");
     altShapes.style.display = "none";
+    const scoreBtns = document.getElementById("buttonsList");
+    scoreBtns.style.display = "none";
 });
 function showIcon(todaysWeather) {
     return __awaiter(this, void 0, void 0, function* () {
