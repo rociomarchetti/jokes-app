@@ -1,136 +1,180 @@
 html,
 body {
-    max-width: 100%;
-    max-height: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0%;
+  padding: 0%;
 }
 
 #bg {
-    background-color: #F1C21B;
-    height: 100%;
-    margin: 0%;
-    background-position: center;
-    background-size: cover;
+  background-color: #0066ff;
+  height: 100%;
+  margin: 0%;
+  background-position: center;
+  background-size: cover;
 }
 
 .meteoInfo {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 #icon {
-    filter: saturate(8);
+  filter: saturate(8);
 }
 
 #temperature {
-    color: black;
-    font-size: x-large;
-    align-content: flex-start;
-    margin-top: 25%;
-    font-weight: bolder;
-    margin-right: 10px;
+  color: black;
+  font-size: x-large;
+  align-content: flex-start;
+  margin-top: 25%;
+  font-weight: bolder;
+  margin-right: 10px;
 }
 
 .vertical-line {
-    border-left: 4px solid black;
-    width: 1px;
-    height: 45%;
-    margin-top: 25%;
+  border-left: 4px solid black;
+  width: 1px;
+  height: 45%;
+  margin-top: 25%;
 }
 
 #svg1 {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    justify-content: center;
-    z-index: 0;
-    margin-left: 20%;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  justify-content: center;
+  z-index: 0;
+  padding-right: 10%;
+  padding-left: 10%;
 }
 
 #form1 {
-    height: 30rem;
+  height: 70vh;
+  width: 60vw;
 }
 
 #form2 {
-    margin-bottom: 30%;
-    height: 10rem;
+  height: 20vh;
 }
 
 #form3 {
-    height: 10rem;
-    margin-top: 30%;
+  height: 10rem;
 }
 
 #svg2 {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    justify-content: center;
-    z-index: 0;
-    margin-left: 20%;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  justify-content: center;
+  z-index: 0;
+  margin-left: 20%;
 }
 
 #form1b {
-    height: 30rem;
+  height: 30rem;
 }
 
 #form2b {
-    margin-bottom: 30%;
-    height: 10rem;
+  margin-bottom: 30%;
+  height: 10rem;
 }
 
 #form3b {
-    height: 10rem;
-    margin-top: 30%;
+  height: 10rem;
+  margin-top: 30%;
 }
 
 #title {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
-#jokesSection {
-    position: relative;
-    z-index: 1;
-    margin-left: 5%;
+.jokesSection {
+  position: relative;
+  z-index: 1;
+  margin-left: 5%;
 }
 
 #joke {
-    color: bisque;
-    text-shadow: 0 0 3px black;
-    margin-top: 5%;
+  color: bisque;
+  text-shadow: 0 0 3px black;
+  margin-top: 5%;
 }
 
 #firstBtn,
 #secondBtn,
 #thirdBtn {
-    color: black;
-    width: 3rem;
-    height: 3rem;
+  color: black;
+  width: 3rem;
+  height: 3rem;
 }
 
 #buttonsList {
-    margin-left: 40%;
-    margin-right: 25%;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    justify-content: center;
-    align-content: center;
+  margin-left: 40%;
+  margin-right: 25%;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-content: center;
 }
 
 #responseMessage {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-shadow: 0 0 3px bisque;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-shadow: 0 0 3px bisque;
 }
 
 #response {
-    margin-top: 8%;
+  margin-top: 8%;
+  color:antiquewhite;
 }
 
 #jokeBtn {
-    width: 20%;
+  width: 20%;
+  cursor: pointer;
 }
+
+.scale-in-center {
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.vibrate {
+    animation: vibrate 0.3s linear infinite both;
+}
+
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes vibrate {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+
+  
