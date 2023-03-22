@@ -1,4 +1,4 @@
-# Web services calculator :slightly_smiling_face:
+# A random jokes provider :slightly_smiling_face:
 Deploy link: https://jokes-app-exercise.netlify.app/
 
 ![jokes](https://user-images.githubusercontent.com/98389214/226614589-f35a4482-357f-45d0-8329-6bb5c3752e97.gif)
@@ -11,7 +11,7 @@ App that interchanges the call to two apis that return jokes randomly and can be
 
 > Brief description of the project: 
 
-This was firstly an exercise in Angular training, in order to assimilate the communication between components.
+This was firstly an exercise in Angular training, in order to assimilate the communication between components. When the user logs in, calls to two api services that return jokes are interchanged. For the next joke to appear, the user must rate the joke using the buttons. At the top of the web page you can also see information about the temperature, which is updated by a weather api.
 
 ## :wrench: **Tech used in this project**
 
